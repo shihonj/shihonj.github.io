@@ -11,10 +11,7 @@ import { Briefcase, GraduationCap } from "@lucide/astro";
 import { getEntry, render } from "astro:content";
 import { siteConfig } from "../config";
 
-// Load avatar from config
-const avatarImage = await import(siteConfig.avatar).then(m => m.default);
 
-// Load about content
 const aboutEntry = await getEntry("about", "about");
 const { Content: AboutContent } = await render(aboutEntry);
 ---
@@ -29,7 +26,7 @@ const { Content: AboutContent } = await render(aboutEntry);
       name={siteConfig.name}
       title={siteConfig.title}
       description={siteConfig.description}
-      avatar={avatarImage}
+      avatar={siteConfig.avatar}   <!-- ✅ 改为直接传字符串 -->
       location={siteConfig.location}
       socialLinks={siteConfig.socialLinks}
     />
@@ -45,43 +42,31 @@ const { Content: AboutContent } = await render(aboutEntry);
       )
     }
 
-    <!-- Projects Section -->
     {siteConfig.sections.projects && <Projects />}
-
-    <!-- Blog Section -->
     {siteConfig.sections.blog && <Blog />}
 
-    <!-- Work Experience Section -->
-    {
-      siteConfig.sections.work && (
-        <Timeline
-          collection="work"
-          variant="timeline"
-          color="primary"
-          icon={Briefcase}
-          sectionTitle="Work Experience"
-        />
-      )
-    }
+    {siteConfig.sections.work && (
+      <Timeline
+        collection="work"
+        variant="timeline"
+        color="primary"
+        icon={Briefcase}
+        sectionTitle="Work Experience"
+      />
+    )}
 
-    <!-- Education Section -->
-    {
-      siteConfig.sections.education && (
-        <Timeline
-          collection="education"
-          variant="list"
-          color="secondary"
-          backgroundColor="base-300"
-          icon={GraduationCap}
-          sectionTitle="Education"
-        />
-      )
-    }
+    {siteConfig.sections.education && (
+      <Timeline
+        collection="education"
+        variant="list"
+        color="secondary"
+        backgroundColor="base-300"
+        icon={GraduationCap}
+        sectionTitle="Education"
+      />
+    )}
 
-    <!-- Hackathons Section -->
     {siteConfig.sections.hackathons && <Hackathons />}
-
-    <!-- Contact Section -->
     {siteConfig.sections.contact && <Contact />}
   </main>
 </Layout>
