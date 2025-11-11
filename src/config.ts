@@ -98,7 +98,7 @@ export const siteConfig: SiteConfig = {
   title: "Nature Player",
   description:
     "Master's student in Quantum Science and Technology at TUM and LMU.<br>Exploring the physical world through the lens of information theory, with focus on quantum information, gauge/gravity duality, and fundamental physics.",
-  avatar: "https://cdn.jsdelivr.net/gh/shihonj/shihonj.github.io@main/public/images/my-avatar.jpg",
+  avatar: "/public/images/my-avatar.jpg",
   location: "🇩🇪 Germany",
   email: "hello@example.com",
   socialLinks: {
